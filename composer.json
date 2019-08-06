@@ -1,0 +1,24 @@
+{
+    "name": "zhangzhuow/document",
+    "description": "thinkphp5.0 接口文档生成器",
+    "type": "library",
+    "keywords": ["thinkphp", "api"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zhangzhuowei",
+            "email": "zhangzhuow@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6",
+        "topthink/framework": "5.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Document\\Command\\": "src/"
+        }
+    },
+    "version": "1.0"
+}

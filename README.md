@@ -1,4 +1,4 @@
-基于ThinkPHP5.0的文档生成器
+基于ThinkPHP5.0的文档生成插件
 ==========
 
 * [安装要求](#requirements)

@@ -98,7 +98,7 @@ Options:
   -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
 
 Available commands:
-  api                 从控制器构建API文档
+  api                 Build Api document from controller
   build               Build Application Dirs
   clear               Clear runtime file
   help                Displays help for a command

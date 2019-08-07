@@ -36,7 +36,7 @@ class User
      * @ApiDescription(section="User", description="Get information about user")
      * @ApiMethod(type="get")
      * @ApiRoute(name="/user/get/{id}")
-     * @ApiParams(name="id", type="integer", nullable=false, description="User id")
+     * @ApiParams(name="id", type="number", nullable=false, description="User id")
      * @ApiParams(name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}")
      * @ApiReturnHeaders(sample="HTTP 200 OK")
      * @ApiReturn(type="object", sample="{
@@ -57,7 +57,7 @@ class User
      * @ApiParams(name="username", type="string", nullable=false, description="Username")
      * @ApiParams(name="email", type="string", nullable=false, description="Email")
      * @ApiParams(name="password", type="string", nullable=false, description="Password")
-     * @ApiParams(name="age", type="integer", nullable=true, description="Age")
+     * @ApiParams(name="age", type="number", nullable=true, description="Age")
      */
     public function create()
     {

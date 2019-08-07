@@ -5,10 +5,6 @@
 * [安装](#installation)
 * [使用方式](#usage)
 * [可以使用的参数](#methods)
-* [Preview](#preview)
-* [Tips](#tips)
-* [Known issues](#known-issues)
-* [TODO](#todo)
 
 ### <a id="requirements"></a>安装要求
 

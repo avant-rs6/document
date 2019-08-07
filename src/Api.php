@@ -16,21 +16,21 @@ class Api extends Command
         $site = Config::get('site');
 
         if (empty($site)) {
-            throw new Exception("配置文件不存在，请从扩展包Config文件夹配置文件复制至项目extra文件夹！");
+            throw new Exception("site file not found");
         }
 
         $this
             ->setName('api')
-            ->addOption('url', 'u', Option::VALUE_OPTIONAL, '默认接口地址', $site['url'])
-            ->addOption('module', 'm', Option::VALUE_OPTIONAL, '模块名称', $site['model'])
-            ->addOption('output', 'o', Option::VALUE_OPTIONAL, '创建的HTML文件名称', $site['file_name'])
-            ->addOption('template', 'e', Option::VALUE_OPTIONAL, '模板文件', 'index.html')
+            ->addOption('url', 'u', Option::VALUE_OPTIONAL, 'default api url', $site['url'])
+            ->addOption('module', 'm', Option::VALUE_OPTIONAL, 'module name(admin/index/api)', $site['model'])
+            ->addOption('output', 'o', Option::VALUE_OPTIONAL, 'output index file name', $site['file_name'])
+            ->addOption('template', 'e', Option::VALUE_OPTIONAL, '', 'index.html')
             // ->addOption('force', 'f', Option::VALUE_OPTIONAL, 'force override general file', false)
-            ->addOption('title', 't', Option::VALUE_OPTIONAL, '文档标题', $site['title'])
-            ->addOption('author', 'a', Option::VALUE_OPTIONAL, '文档作者', $site['name'])
+            ->addOption('title', 't', Option::VALUE_OPTIONAL, 'document title', $site['title'])
+            ->addOption('author', 'a', Option::VALUE_OPTIONAL, 'document author', $site['name'])
             ->addOption('class', 'c', Option::VALUE_OPTIONAL | Option::VALUE_IS_ARRAY, 'extend class', null)
-            ->addOption('language', 'l', Option::VALUE_OPTIONAL, '语言', 'zh_cn')
-            ->setDescription('从控制器构建API文档');
+            ->addOption('language', 'l', Option::VALUE_OPTIONAL, 'language', 'zh_cn')
+            ->setDescription('Build Api document from controller');
     }
 
     protected function execute(Input $input, Output $output)
@@ -44,7 +44,7 @@ class Api extends Command
         $langFile = $apiDir . 'lang' . DS . $language . '.php';
 
         if (!is_file($langFile)) {
-            throw new Exception('语言文件不存在');
+            throw new Exception('language file not found');
         }
         $lang = include_once $langFile;
         // 目标目录
@@ -55,7 +55,7 @@ class Api extends Command
         $template_dir = $apiDir . 'template' . DS;
         $template_file = $template_dir . $input->getOption('template');
         if (!is_file($template_file)) {
-            throw new Exception('模板文件不存在');
+            throw new Exception('template file not found');
         }
 
         // 额外的类
@@ -69,7 +69,7 @@ class Api extends Command
 
         $moduleDir = APP_PATH . $module . DS;
         if (!is_dir($moduleDir)) {
-            throw new Exception('模块不存在');
+            throw new Exception('module not found');
         }
 
         if (version_compare(PHP_VERSION, '7.0.0', '<')) {
@@ -78,10 +78,10 @@ class Api extends Command
                 $directives = $configuration['directives'];
                 $configName = request()->isCli() ? 'opcache.enable_cli' : 'opcache.enable';
                 if (!$directives[$configName]) {
-                    throw new Exception("请确保已打开PHP配置{$configName}");
+                    throw new Exception("Please make sure {$configName} is turned on");
                 }
             } else {
-                throw new Exception("请确保已启用PHP配置opcache");
+                throw new Exception("Please make sure opcache already enabled");
             }
         }
 
@@ -112,11 +112,11 @@ class Api extends Command
 
         if (!empty($content)) {
             if (!file_put_contents($output_file, $content)) {
-                throw new Exception('无法保存内容到--' . $output_file);
+                throw new Exception('Cannot save the content to ' . $output_file);
             }
-            $output->info("构建完成!");
+            $output->info("Build Successed！");
         } else {
-            throw new Exception('没有可构建的数据！');
+            throw new Exception('Not Data！');
         }
 
     }

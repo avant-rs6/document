@@ -36,7 +36,7 @@ class User
      * @ApiDescription(section="User", description="Get information about user")
      * @ApiMethod(type="get")
      * @ApiRoute(name="/user/get/{id}")
-     * @ApiParams(name="id", type="number", nullable=false, description="User id")
+     * @ApiParams(name="id", type="number", value="value" nullable=false, description="User id")
      * @ApiParams(name="data", type="object", sample="{'user_id':'int','user_name':'string','profile':{'email':'string','age':'integer'}}")
      * @ApiReturnHeaders(sample="HTTP 200 OK")
      * @ApiReturn(type="object", sample="{
